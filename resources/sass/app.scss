@@ -1,0 +1,9 @@
+// Import any global styles or variables
+@import "@coreui/coreui/scss/functions";
+@import './variables'; // if you have variables in a separate file
+
+// Add template styles
+@import './custom';
+@import './theme';
+@import './examples.scss';
+@import './style.scss';

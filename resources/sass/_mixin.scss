@@ -1,0 +1,46 @@
+// resources/sass/mixins.scss
+/* Handle LTR direction */
+[dir='ltr'] {
+    .my-element {
+      padding-left: var(--cui-sidebar-occupy-start, 0);
+      padding-right: var(--cui-sidebar-occupy-end, 0);
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+  
+  /* Handle RTL direction */
+  [dir='rtl'] {
+    .my-element {
+      padding-left: var(--cui-sidebar-occupy-end, 0);
+      padding-right: var(--cui-sidebar-occupy-start, 0);
+    }
+  }
+
+  @mixin transition($properties, $duration: 0.3s, $timing: ease) {
+    transition: $properties $duration $timing;
+  }
+
+// _mixins.scss
+@mixin color-mode($mode) {
+    @if $mode == dark {
+      // Dark mode styles
+      body {
+        background-color: var(--cui-dark-bg-subtle);
+      }
+      .footer {
+        --cui-footer-bg: var(--cui-body-bg);
+      }
+    } @else {
+      // Light mode or default mode styles
+      body {
+        background-color: var(--cui-light-bg-subtle);
+      }
+      .footer {
+        --cui-footer-bg: var(--cui-light-footer-bg);
+      }
+    }
+  }
+  
+  
+  

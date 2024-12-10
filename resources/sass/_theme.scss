@@ -1,0 +1,84 @@
+$enable-dark-mode: true;
+@import 'mixin';
+
+body {
+  background-color: var(--cui-tertiary-bg);
+}
+
+.wrapper {
+  display: flex;  // Flexbox layout to align sidebar and main content
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;  // Optional: Ensure full height if needed
+  padding-left: var(--cui-sidebar-occupy-start, 0); // Adjust for sidebar width
+  padding-right: var(--cui-sidebar-occupy-end, 0);
+  will-change: transform;
+  @include transition(padding .15s);
+
+  // Automatically adjust content width when sidebar is narrow
+  .sidebar-narrow &,
+  .sidebar-narrow-unfoldable:not(:hover) & {
+    padding-left: 4rem; // Narrow sidebar width
+  }
+}
+
+.main{
+  flex: 1; // Occupy the remaining space
+  transition: margin-left .15s; // Smooth transition when sidebar width changes
+  padding-left: 0; // Remove any padding that might cause space
+}
+
+.header > .container-fluid,
+.sidebar-header {
+  min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
+}
+
+.sidebar-brand-full {
+  margin-left: 3px;
+}
+
+.sidebar-header {
+  .nav-underline-border {
+    --cui-nav-underline-border-link-padding-x: 1rem;
+    --cui-nav-underline-border-gap: 0;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
+  }
+}
+
+.sidebar {
+  width: 16rem; // Default sidebar width
+  transition: width .15s;
+
+  &.sidebar-narrow,
+  &.sidebar-narrow-unfoldable:not(:hover) {
+    width: 4rem; // Reduced sidebar width
+  }
+}
+
+.sidebar-toggler {
+  margin-left: auto;
+}
+
+.sidebar-narrow,
+.sidebar-narrow-unfoldable:not(:hover) {
+  .sidebar-toggler {
+    margin-right: auto;
+  }
+}
+
+.header > .container-fluid + .container-fluid {
+  min-height: 3rem;
+}
+
+.footer {
+  min-height: calc(3rem + 1px); // stylelint-disable-line function-disallowed-list
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark);  // Just include the mixin, no content block needed
+}
